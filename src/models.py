@@ -1,6 +1,47 @@
 from flask_sqlalchemy import SQLAlchemy
+from random import randint #Libreria para crear numeros aleatorios
 
 db = SQLAlchemy()
+
+class FamilyTree:
+    def __init__(self, lastName):
+        self.lastName = lastName
+
+        self.members = [{
+            'id': self.generateId(),
+            'fistName': 'Luis',
+            'lastName': self.lastName,
+            'age': 28,
+            'luckyNumber': [11,10]
+        },{
+            'id': self.generateId(),
+            'fistName': 'Joana',
+            'lastName': self.lastName,
+            'age': 29,
+            'luckyNumber': [13]
+        },{
+            'id': self.generateId(),
+            'fistName': 'Mikkel',
+            'lastName': self.lastName,
+            'age': 29,
+            'luckyNumber': [13]
+        },{
+            'id': self.generateId(),
+            'fistName': 'Leon',
+            'lastName': self.lastName,
+            'age': 29,
+            'luckyNumber': [13]
+        }
+        ]
+
+    def generateId(self):   
+        return randint(0,99999999) #Genero el id aleatorio
+    
+    def addMember(self,{data}):
+
+
+
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
