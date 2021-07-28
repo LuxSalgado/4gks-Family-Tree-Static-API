@@ -8,53 +8,70 @@ class FamilyTree:
         self.lastName = lastName
 
         self.members = [{
-            'id': self.generateId(),
+            'id': 1,
             'fistName': 'Luis',
             'lastName': self.lastName,
             'age': 28,
-            'luckyNumber': [11,10]
-        },{
-            'id': self.generateId(),
-            'fistName': 'Joana',
+            'parent': 3,
+            'child': 2
+        },
+        {
+            'id': 2,
+            'fistName': 'Jesus',
             'lastName': self.lastName,
-            'age': 29,
-            'luckyNumber': [13]
-        },{
-            'id': self.generateId(),
-            'fistName': 'Mikkel',
+            'age': 5,
+            'parent': 1,
+            'child': None
+        },
+        {
+            'id': 3,
+            'fistName': 'Daniel',
             'lastName': self.lastName,
-            'age': 29,
-            'luckyNumber': [13]
-        },{
-            'id': self.generateId(),
-            'fistName': 'Leon',
+            'age': 65,
+            'parent': None,
+            'child': [1,4]
+        },
+        {
+            'id': 4,
+            'fistName': 'Patricia',
             'lastName': self.lastName,
-            'age': 29,
-            'luckyNumber': [13]
+            'age': 36,
+            'parent': 3,
+            'child': 5
+        },
+        {
+            'id': 5,
+            'fistName': 'Clara',
+            'lastName': self.lastName,
+            'age': 2,
+            'parent': 4,
+            'child': None
+        },
+        {
+            'id': 6,
+            'fistName': 'Roberto',
+            'lastName': self.lastName,
+            'age': 21,
+            'parent': 4,
+            'child': 7
+        },
+        {
+            'id': 7,
+            'fistName': 'Miguel',
+            'lastName': self.lastName,
+            'age': 3,
+            'parent': 6,
+            'child': None
         }
         ]
 
     def generateId(self):   
         return randint(0,99999999) #Genero el id aleatorio
     
-    def addMember(self,{data}):
+    def idMember(self,id): #recorro tod el arreglo y retorno solo lo que coincida con el id
+        for i in self.members: #recorrer el arreglo members
+                if i['id'] == int(id):
+                    return i
+        return None
 
 
-
-
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-
-    def __repr__(self):
-        return '<User %r>' % self.username
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "email": self.email,
-            # do not serialize the password, its a security breach
-        }
